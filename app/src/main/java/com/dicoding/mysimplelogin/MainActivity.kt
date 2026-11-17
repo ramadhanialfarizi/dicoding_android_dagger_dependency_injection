@@ -13,6 +13,10 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var userRepository: UserRepository
 
+    // For Check Singleton
+    @Inject
+    lateinit var userRepository2: UserRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
 
@@ -30,6 +34,25 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             saveSession()
         }
+
+
+        // For Check Singleton
+        userRepository.checkInstance()
+        userRepository2.checkInstance()
+
+        // Result Log with Singleton
+        /**
+         * checkInstance: com.dicoding.mysimplelogin.UserRepository@c1cdb5a
+         * checkInstance: com.dicoding.mysimplelogin.UserRepository@c1cdb5a
+         *
+         * **/
+
+        // Result Log without Singleton
+        /**
+         * checkInstance: com.dicoding.mysimplelogin.UserRepository@c1cdb5a
+         * checkInstance: com.dicoding.mysimplelogin.UserRepository@4bb018b
+         *
+         * **/
     }
 
     private fun saveSession() {

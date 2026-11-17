@@ -1,9 +1,12 @@
 package com.dicoding.mysimplelogin
 
+import android.util.Log
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
+// Hapus kode @Singleton untuk melakukan test singleton
+//@Singleton
 class UserRepository @Inject constructor(private val sesi: SessionManager) {
 
 //    companion object {
@@ -15,6 +18,9 @@ class UserRepository @Inject constructor(private val sesi: SessionManager) {
 //                instance ?: UserRepository(sesi)
 //            }
 //    }
+
+    // For Check Singleton
+    fun checkInstance() = Log.d("Singleton", "checkInstance: $this")
 
     fun loginUser(username: String) {
         sesi.createLoginSession()
